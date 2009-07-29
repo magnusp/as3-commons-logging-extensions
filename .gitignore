@@ -1,0 +1,13 @@
+.DS_Store
+.actionScriptProperties
+.flexLibProperties
+.project
+.settings
+.flexProperties
+.pydevproject
+/bin
+/bin-debug
+*.pyc
+*.db3
+*.kpf
+*.air

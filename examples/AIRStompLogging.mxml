@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/halo" creationComplete="windowedapplication1_creationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			/*
+				Since normal security restrictions apply when using Stomp, this
+				example is adapted to run as an AIR application (less restrictive).
+				
+				It's perfectly viable to use Stomp in a web application, but there
+				must exist something that grants permission for Flash socket connections
+				on the broker host.
+				
+				See http://www.adobe.com/devnet/flashplayer/articles/socket_policy_files.html
+				for more information on this subject.
+			*/  
+				
+			import org.as3commons.logging.impl.StompLoggerFactory;
+			import org.as3commons.logging.ILogger;
+			import org.as3commons.logging.LoggerFactory;
+			import org.codehaus.stomp.Stomp;
+			import mx.events.FlexEvent;
+
+			protected function windowedapplication1_creationCompleteHandler(event:FlexEvent):void
+			{
+				var stomp:Stomp=new Stomp();
+				stomp.connect();
+				LoggerFactory.loggerFactory = new StompLoggerFactory(stomp);
+				var logger:ILogger = LoggerFactory.getLogger("StompDemo");
+
+				logger.info("Logged via STOMP");
+			}
+
+		]]>
+	</fx:Script>
+	
+</s:WindowedApplication>
